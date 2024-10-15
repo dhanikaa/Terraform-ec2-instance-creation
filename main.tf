@@ -3,9 +3,19 @@ provider "aws" {
     region = "eu-north-1"  # Set your desired AWS region
 }
 
+variable "instance_type" {
+    description = "EC2 instance type"
+    type    = string
+    default = "t3.micro"  # Set the desired instance type
+}
+
+variable "ami_id" {
+    description = "EC2 ami id"
+    type = string
+}
 resource "aws_instance" "example" {
-    ami           = "ami-097c5c21a18dc59ea"  # Specify an appropriate AMI ID
-    instance_type = "t3.micro"
+    ami           = var.ami_id  # Specify an appropriate AMI ID
+    instance_type = var.instance_type
     provider      = aws.eu-north-1
 
     # Adding tags, including a Name tag for the instance
