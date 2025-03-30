@@ -13,7 +13,7 @@ variable "ami_id" {
     description = "EC2 ami id"
     type = string
 }
-resource "aws_instance" "example" {
+resource "aws_instance" "example_instance" {
     ami           = var.ami_id  # Specify an appropriate AMI ID
     instance_type = var.instance_type
     provider      = aws.eu-north-1
@@ -25,6 +25,6 @@ resource "aws_instance" "example" {
 }
 
 output "public_ip" {
-    
     description = "Public IP address of the EC2 instance"
+    value = aws_instance.example_instance.public_ip
 }
